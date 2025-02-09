@@ -1,5 +1,7 @@
 package org.example.domain.entities;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.domain.enums.ShiftType;
@@ -13,6 +15,7 @@ import java.util.Date;
 public class Shift extends BaseEntity{
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private ShiftType type;
     @NotNull
     @PastOrPresent

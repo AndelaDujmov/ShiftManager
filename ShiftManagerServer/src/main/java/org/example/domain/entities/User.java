@@ -1,5 +1,7 @@
 package org.example.domain.entities;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.domain.enums.RoleName;
@@ -25,7 +27,12 @@ public class User extends BaseEntity {
     private String password;
     @NotNull
     @Size(min = 8, max = 20)
+    @Pattern(
+            regexp = "^\\d+$",
+            message = "Your contact info should contain only numbers!"
+    )
     private String contactInfo;
     @NotNull
+    @Enumerated(EnumType.STRING)
     private RoleName role;
 }

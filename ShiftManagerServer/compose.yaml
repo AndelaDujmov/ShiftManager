@@ -1,0 +1,5 @@
+services:
+  shift-image:
+    image: shiftmanagerserver:1.0
+    ports:
+      - 8080:8080
