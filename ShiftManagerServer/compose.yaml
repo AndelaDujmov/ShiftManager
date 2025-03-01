@@ -1,5 +1,45 @@
 services:
+
+  postgresdb:
+    image: postgres
+    restart: unless-stopped
+    env_file:
+      - .env
+    container_name: db
+    environment:
+      POSTGRES_USER: ${POSTGRESDB_USER}
+      POSTGRES_PASSWORD: ${POSTGRESDB_ROOT_PASSWORD}
+      POSTGRES_DB: ${POSTGRESDB_DATABASE}
+    ports:
+      - "${POSTGRESDB_LOCAL_PORT}:${POSTGRESDB_DOCKER_PORT}"
+    volumes:
+      - db:/var/lib/postgresql/data
+
   shift-image:
     image: shiftmanagerserver:1.0
+    depends_on:
+      - postgresdb
+    build:
+      context: .
+    restart: on-failure
+    container_name: shiftmanagercontainer
+    env_file:
+      - .env
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgresdb:${POSTGRESDB_DOCKER_PORT}/${POSTGRESDB_DATABASE}"
+      SPRING_DATASOURCE_USERNAME: "${POSTGRESDB_USER}"
+      SPRING_DATASOURCE_PASSWORD: "${POSTGRESDB_ROOT_PASSWORD}"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: "org.hibernate.dialect.PostgreSQLDialect"
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
     ports:
-      - 8080:8080
+      - "${SPRING_LOCAL_PORT}:${SPRING_DOCKER_PORT}"
+
+volumes:
+  db:
+
+
+# to run db: docker exec -it db psgl -U postgres -d shiftmanager
