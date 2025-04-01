@@ -1,4 +1,4 @@
-package org.example.config;
+package org.example.utils;
 
 public class ExceptionMessages {
 
@@ -9,4 +9,8 @@ public class ExceptionMessages {
     // SHIFT ASSIGNMENT
     public static final String SHIFT_ASSIGNMENT_CANNOT_BE_NULL = "Shift assignment can't be null!";
     public static final String SHIFT_ASSIGNMENT_NOT_FOUND = "Shift assignment not found!";
+
+    // USER
+    public static final String USER_CANNOT_BE_NULL = "User can't be null!";
+    public static final String USER_NOT_FOUND = "User not found!";
 }

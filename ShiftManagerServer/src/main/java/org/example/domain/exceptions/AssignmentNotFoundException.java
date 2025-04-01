@@ -1,7 +1,7 @@
 package org.example.domain.exceptions;
 
-public class ShiftNotAssignedException extends RuntimeException {
-    public ShiftNotAssignedException(String message) {
+public class AssignmentNotFoundException extends RuntimeException {
+    public AssignmentNotFoundException(String message) {
         super(message);
     }
 }

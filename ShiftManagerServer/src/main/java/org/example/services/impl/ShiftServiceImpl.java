@@ -1,5 +1,7 @@
 package org.example.services.impl;
 
+import org.example.domain.dto.request.ShiftRequest;
+import org.example.domain.dto.response.ShiftResponse;
 import org.example.domain.entities.Shift;
 import org.example.domain.entities.ShiftAssignment;
 import org.example.repositories.ShiftRepository;
@@ -18,7 +20,7 @@ public class ShiftServiceImpl implements ShiftService {
     private ShiftRepository shiftRepository;
 
     @Override
-    public Shift add(Shift object) {
+    public ShiftResponse add(ShiftRequest object) {
 
         return shiftRepository.save(object);
     }
