@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,8 +12,7 @@ import org.example.domain.enums.ShiftStatus;
 
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 @Entity
 @NoArgsConstructor
 public class ShiftAssignment extends BaseEntity{
@@ -22,19 +22,18 @@ public class ShiftAssignment extends BaseEntity{
             name = "employeeId",
             referencedColumnName = "id"
     )
-    @NotEmpty
+    @NotEmpty(message = "User cannot be null or empty")
     private User employee;
     @ManyToOne
     @JoinColumn(
             name = "shiftId",
             referencedColumnName = "id"
     )
-    @NotEmpty
+    @NotEmpty(message = "Shift cannot be null of empty")
     private Shift shift;
-    @NotNull
-    @PastOrPresent
+    @NotNull(message = "Shift date cannot be null or empty")
     private Date shiftDate;
-    @NotNull
+    @NotNull(message = "Shift status cannot be null")
     @Enumerated(EnumType.STRING)
     private ShiftStatus status;
 }

@@ -12,7 +12,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRESDB_ROOT_PASSWORD}
       POSTGRES_DB: ${POSTGRESDB_DATABASE}
     healthcheck:
-      test: ["CMD_SHELL", "pg_isready"]
+      test: ["CMD-SHELL", "pg_isready"]
       interval: 1s
       timeout: 5s
       retries: 10
