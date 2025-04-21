@@ -40,4 +40,4 @@ sleep 10  # Optional delay
 docker-compose logs shift-image | tail -n 30
 
 
-docker exec -it db psql -U postgres -d shiftmanager
+docker exec -it db psql -U postgres -d shiftmanagerdb

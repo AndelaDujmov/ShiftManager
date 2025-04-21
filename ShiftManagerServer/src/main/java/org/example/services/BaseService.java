@@ -4,18 +4,20 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * @param <T>
+ * @param <T, R>
  *
  * generic service that's going to be used by other services for basic operations
  */
 
-public interface BaseService<T> {
+public interface BaseService<T, R> {
 
-    public T add(T object);
+    public T add(R object);
 
     public T findById(UUID id);
 
     public List<T> findAll();
 
-    public UUID deleteById(UUID id);
+    public T deleteById(UUID id);
+
+    public T update(R object, UUID id);
 }

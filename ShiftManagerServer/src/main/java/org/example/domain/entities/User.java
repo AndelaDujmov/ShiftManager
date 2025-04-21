@@ -1,9 +1,6 @@
 package org.example.domain.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +20,7 @@ public class User extends BaseEntity {
     @NotNull(message = "Username cannot be null")
     @Size(min = 3, max = 20)
     @Pattern(regexp = "[A-Za-z0-9]+", message = "Your username should not contain any special characters!")
+    @Column(unique = true)
     private String username;
     @NotNull(message = "Password cannot be null")
     @Size(min = 8, max = 20)
@@ -37,6 +35,7 @@ public class User extends BaseEntity {
             regexp = "^\\d+$",
             message = "Your contact info should contain only numbers!"
     )
+    @Column(unique = true)
     private String contactInfo;
     @NotNull(message = "Role cannot be null")
     @Enumerated(EnumType.STRING)

@@ -4,10 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.example.domain.enums.ShiftStatus;
 
 import java.util.Date;
@@ -36,4 +33,5 @@ public class ShiftAssignment extends BaseEntity{
     @NotNull(message = "Shift status cannot be null")
     @Enumerated(EnumType.STRING)
     private ShiftStatus status;
+
 }

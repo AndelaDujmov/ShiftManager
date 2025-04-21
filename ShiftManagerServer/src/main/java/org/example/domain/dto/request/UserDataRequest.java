@@ -1,16 +1,16 @@
 package org.example.domain.dto.request;
 
+import jakarta.annotation.Nullable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.example.domain.enums.RoleName;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class LoginRequest {
+public class UserDataRequest {
 
     @NotNull(message = "Username cannot be null")
     @Size(min = 3, max = 20)
@@ -23,4 +23,13 @@ public class LoginRequest {
             message = "Your password should contain at least one uppercase letter, one lowercase, number and a special character!"
     )
     private String password;
+    @NotNull(message = "Contact info cannot be null")
+    @Size(min = 8, max = 20)
+    @Pattern(
+            regexp = "^\\d+$",
+            message = "Your contact info should contain only numbers!"
+    )
+    private String contactInfo;
+    @Nullable
+    private String role;
 }

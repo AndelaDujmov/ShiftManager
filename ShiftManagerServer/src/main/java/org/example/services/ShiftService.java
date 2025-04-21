@@ -6,6 +6,5 @@ import org.example.domain.entities.Shift;
 
 // TODO: change return types like shift assignment to shift assignment request/response
 
-public interface ShiftService extends BaseService<Shift>{
-    public ShiftResponse add(ShiftRequest object);
+public interface ShiftService extends BaseService<ShiftResponse, ShiftRequest>{
 }

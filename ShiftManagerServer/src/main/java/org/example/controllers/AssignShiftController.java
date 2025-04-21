@@ -14,27 +14,27 @@ public class AssignShiftController {
 
     private ShiftAssignmentService shiftAssignmentService;
 
-    @GetMapping("/add")
-    public List<ShiftAssignment> getAssignments() {
-
-        return shiftAssignmentService.findAll();
-    }
-
-    @PostMapping("/assign/{id}")
-    public ShiftAssignment assignShift(@RequestParam UUID id) {
-
-        return shiftAssignmentService.assignTo(id);
-    }
+//    @GetMapping("/add")
+//    public List<ShiftAssignment> getAssignments() {
+//
+//        return shiftAssignmentService.findAll();
+//    }
+//
+//    @PostMapping("/assign/{id}")
+//    public ShiftAssignment assignShift(@RequestParam UUID id) {
+//
+//        return shiftAssignmentService.assignTo(id);
+//    }
 
     @PutMapping("/assign/{id}")
     public void updateShiftAssignment(@RequestParam UUID id) {
 
         return; // TODO: create update method in services and repositories
     }
-
-    @DeleteMapping("/delete/{id}")
-    public UUID deleteShift(@RequestParam UUID id) {
-
-        return shiftAssignmentService.deleteById(id);
-    }
+//
+//    @DeleteMapping("/delete/{id}")
+//    public UUID deleteShift(@RequestParam UUID id) {
+//
+//        return shiftAssignmentService.deleteById(id);
+//    }
 }

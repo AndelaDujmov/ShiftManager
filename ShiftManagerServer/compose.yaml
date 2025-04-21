@@ -53,4 +53,4 @@ volumes:
   db:
 
 
-# to run db: docker exec -it db psgl -U postgres -d shiftmanager
+# to run db: docker exec -it db psql -U postgres -d shiftmanager

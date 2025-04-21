@@ -1,43 +1,56 @@
 package org.example.controllers;
 
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.example.domain.dto.request.ShiftRequest;
+import org.example.domain.dto.response.ShiftResponse;
 import org.example.domain.entities.Shift;
 import org.example.services.ShiftService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-// TODO: change return types like shift assignment to corresponding response type
 
 @RestController
 @RequestMapping(path = "shift")
+@AllArgsConstructor
 public class ShiftController {
 
-    @Autowired
     private ShiftService shiftService;
 
     @GetMapping
-    public List<Shift> index() {
+    public ResponseEntity<List<ShiftResponse>> index() {
 
-        return shiftService.findAll();
+        List<ShiftResponse> shifts = shiftService.findAll();
+
+        return new ResponseEntity<>(shifts, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public Shift createShift(@RequestBody Shift shift) {
+    public ResponseEntity<ShiftResponse> createShift(@Valid @RequestBody ShiftRequest shift) {
 
-        return shiftService.add(shift);
+       ShiftResponse shiftResponse = shiftService.add(shift);
+
+       return new ResponseEntity<>(shiftResponse, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
-    public void updateShift(@RequestBody Shift shift) {
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ShiftResponse> updateShift(@PathVariable UUID id, @Valid @RequestBody ShiftRequest shift) {
 
-        return; // TODO: create update method in service and repo
+        ShiftResponse updated = shiftService.update(shift, id);
+
+        return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public UUID deleteShift(@RequestParam UUID id){
+    public ResponseEntity<ShiftResponse> deleteShift(@PathVariable UUID id){
 
-        return shiftService.deleteById(id);
+        ShiftResponse deleted = shiftService.deleteById(id);
+
+        return new ResponseEntity<>(deleted, HttpStatus.OK);
     }
 }
